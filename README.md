@@ -2,7 +2,7 @@
 
 - [x] 1. Dynamic Programming (Update : 13. 2. 2019)
 - [x] 2. Value Based Methods (Update : 17. 2. 2019)
-- [ ] 3. Policy Based Methods
+- [x] 3. Policy Based Methods (Update : 23. 2. 2019)
 
 - [ ] 4. Off-policy Policy Based Methods
 
