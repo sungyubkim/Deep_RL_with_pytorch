@@ -10,7 +10,7 @@
      1. [A2C](https://blog.openai.com/baselines-acktr-a2c/)
      2. [PPO](https://blog.openai.com/openai-baselines-ppo/)
 
-- [x] 4. Off-policy Policy Based Methods (Update : 9. 3. 2019)
+- [x] 4. Off-policy Policy Based Methods (Update : 10. 3. 2019)
      1. [SAC](https://ai.googleblog.com/2019/01/soft-actor-critic-deep-reinforcement.html)
      2. [SIL](https://arxiv.org/abs/1806.05635) ( not with A2C, PPO but SAC)
 
