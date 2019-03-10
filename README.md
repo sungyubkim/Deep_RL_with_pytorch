@@ -1,7 +1,11 @@
 # Deep Reinforcement Learning with PyTorch
 
 - [x] 1. Dynamic Programming (Update : 13. 2. 2019)
+
      1. Conditional GAN
+
+     ![cde](./1_Dynamic_Programming/cde_with_gan.gif)
+
      2. Policy Iteration & Value Iteration
 - [x] 2. Value Based Methods (Update : 17. 2. 2019)
 
