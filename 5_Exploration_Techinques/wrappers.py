@@ -371,6 +371,7 @@ def wrap_cover(env_name):
     def wrap_():
         """Apply a common set of wrappers for Atari games."""
         env = gym.make(env_name)
+        env._max_episode_steps = 4500*4 # same setting for RND paper
         env = Monitor(env, './')
         assert 'NoFrameskip' in env.spec.id
         env = EpisodicLifeEnv(env)
