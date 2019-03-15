@@ -353,15 +353,29 @@ class SubprocVecEnv(VecEnv):
         for p in self.ps:
             p.join()
         self.closed = True
+        
+class StickyActionEnv(gym.Wrapper):
+    def __init__(self, env, p=0.5):
+        super(StickyActionEnv, self).__init__(env)
+        self.p = p
+        self.last_action = 0
+
+    def reset(self):
+        self.last_action = 0
+        return self.env.reset()
+
+    def step(self, action):
+        if self.unwrapped.np_random.uniform() < self.p:
+            action = self.last_action
+        self.last_action = action
+        obs, reward, done, info = self.env.step(action)
+        return obs, reward, done, info
 
 def wrap(env):
     """Apply a common set of wrappers for Atari games."""
     assert 'NoFrameskip' in env.spec.id
-    env = EpisodicLifeEnv(env)
-    env = NoopResetEnv(env, noop_max=30)
+    env = StickyActionEnv(env)
     env = MaxAndSkipEnv(env, skip=4)
-    if 'FIRE' in env.unwrapped.get_action_meanings():
-        env = FireResetEnv(env)
     env = ProcessFrame84(env)
     env = ImageToPyTorch(env)
     env = FrameStack(env, 4)
@@ -372,13 +386,10 @@ def wrap_cover(env_name):
         """Apply a common set of wrappers for Atari games."""
         env = gym.make(env_name)
         env._max_episode_steps = 4500*4 # same setting for RND paper
-        env = Monitor(env, './')
+        env = Monitor(env, './', allow_early_resets=True)
         assert 'NoFrameskip' in env.spec.id
-        env = EpisodicLifeEnv(env)
-        env = NoopResetEnv(env, noop_max=30)
+        env = StickyActionEnv(env)
         env = MaxAndSkipEnv(env, skip=4)
-        if 'FIRE' in env.unwrapped.get_action_meanings():
-            env = FireResetEnv(env)
         env = ProcessFrame84(env)
         env = ImageToPyTorch(env)
         env = FrameStack(env, 4)
