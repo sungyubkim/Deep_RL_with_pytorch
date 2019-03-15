@@ -73,6 +73,7 @@ class Runner(AbstractEnvRunner):
             else:
                 # get intrinsic reward
                 r_int = self.model.r_int(self.obs)
+#                 r_int = r_int / (np.std(int_values) + 1e-8)
             for info in infos:
                 maybeepinfo = info.get('episode')
                 if maybeepinfo: epinfos.append(maybeepinfo)

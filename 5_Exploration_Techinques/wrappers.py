@@ -374,6 +374,9 @@ class StickyActionEnv(gym.Wrapper):
 def wrap(env):
     """Apply a common set of wrappers for Atari games."""
     assert 'NoFrameskip' in env.spec.id
+    env = EpisodicLifeEnv(env)
+    if 'FIRE' in env.unwrapped.get_action_meanings():
+        env = FireResetEnv(env)
     env = StickyActionEnv(env)
     env = MaxAndSkipEnv(env, skip=4)
     env = ProcessFrame84(env)
@@ -388,6 +391,9 @@ def wrap_cover(env_name):
         env._max_episode_steps = 4500*4 # same setting for RND paper
         env = Monitor(env, './', allow_early_resets=True)
         assert 'NoFrameskip' in env.spec.id
+        env = EpisodicLifeEnv(env)
+        if 'FIRE' in env.unwrapped.get_action_meanings():
+            env = FireResetEnv(env)
         env = StickyActionEnv(env)
         env = MaxAndSkipEnv(env, skip=4)
         env = ProcessFrame84(env)
