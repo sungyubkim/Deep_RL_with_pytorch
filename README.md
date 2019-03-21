@@ -11,16 +11,12 @@
 
      1. [Vanilla DQN](https://www.nature.com/articles/nature14236)
 
-     ![cartpole_dqn](./2_Value_Based_Methods/simple_result.gif)
-
      2. [PDD DQN](https://blog.openai.com/openai-baselines-dqn/)
 
      ![pong_dqn](./2_Value_Based_Methods/pong_result.gif)
 - [x] 3. Policy Based Methods (Update : 23. 2. 2019)
 
      1. [A2C](https://blog.openai.com/baselines-acktr-a2c/)
-
-     ![pong_a2c](./3_Policy_Based_Methods/a2c_pong_result.gif)
 
      2. [PPO](https://blog.openai.com/openai-baselines-ppo/)
 
@@ -30,8 +26,6 @@
 
      1. [SAC](https://ai.googleblog.com/2019/01/soft-actor-critic-deep-reinforcement.html)
 
-     ![breakout_sac](./4_Off-policy_Policy_Based_Methods/sac_breakout_result.gif)
-
      2. [SIL](https://arxiv.org/abs/1806.05635) ( not with A2C, PPO but SAC)
 
      ![breakout_sil](./4_Off-policy_Policy_Based_Methods/ssac_breakout_result.gif)
@@ -40,11 +34,7 @@
 
      1. [Thompson sampling with MCDO](http://mlg.eng.cam.ac.uk/yarin/blog_3d801aa532c1ce.html)
 
-    ![ts_dqn](./5_Exploration_Techinques/simple_result.gif)
-
-    
-
-     2. [RND](https://openai.com/blog/reinforcement-learning-with-prediction-based-rewards/)
+        2. [RND](https://openai.com/blog/reinforcement-learning-with-prediction-based-rewards/)
 
     Breakout with only intrinsic rewards
 
