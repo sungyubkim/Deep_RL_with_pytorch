@@ -40,17 +40,20 @@
 
      1. [Thompson sampling with MCDO](http://mlg.eng.cam.ac.uk/yarin/blog_3d801aa532c1ce.html)
 
-        ![ts_dqn](./5_Exploration_Techinques/simple_result.gif)
+    ![ts_dqn](./5_Exploration_Techinques/simple_result.gif)
 
-        
+    
 
      2. [RND](https://openai.com/blog/reinforcement-learning-with-prediction-based-rewards/)
 
-        Breakout with only intrinsic rewards
+    Breakout with only intrinsic rewards
 
-        ![breakout_only_intrinsic](./5_Exploration_Techinques/breakout_only_intrinsic.png)
+    ![breakout_only_intrinsic](./5_Exploration_Techinques/breakout_only_intrinsic.png)
 
-- [ ] 6. Uncertainty in RL
+- [x] 6. Uncertainty in RL (Update : 21. 3. 2019)
+     1. [Categorical DQN(C51)](https://flyyufelix.github.io/2017/10/24/distributional-bellman.html)
+     2. [QR-DQN](https://arxiv.org/pdf/1710.10044)
+     3. [Implicit Quantile Networks](https://arxiv.org/pdf/1806.06923)
 
 - [ ] 7. Imitation Learning
 
