@@ -73,10 +73,11 @@ class Runner(AbstractEnvRunner):
             else:
                 # get intrinsic reward
                 r_int = self.model.r_int(self.obs)
-#                 r_int = r_int / (np.std(int_values) + 1e-8)
             for info in infos:
                 maybeepinfo = info.get('episode')
                 if maybeepinfo: epinfos.append(maybeepinfo)
+                    
+                   
             mb_rewards.append(rewards)
             mb_int_rewards.append(r_int)
         #batch of steps to batch of rollouts
@@ -88,6 +89,10 @@ class Runner(AbstractEnvRunner):
         mb_int_values = np.asarray(mb_int_values, dtype=np.float32)
         mb_neglogpacs = np.asarray(mb_neglogpacs, dtype=np.float32)
         mb_dones = np.asarray(mb_dones, dtype=np.bool)
+        
+        # post processing of intrinsic rewards
+        mb_int_rewards = mb_int_rewards / (np.std(mb_int_values) + 1e-8)
+        
         # choose action then we get (actions, values, log_probs)
         last_values = self.model.choose_action(self.obs)[1]
         last_int_values = self.model.choose_action(self.obs)[2]
@@ -114,14 +119,16 @@ class Runner(AbstractEnvRunner):
                 
             delta = mb_rewards[t] + self.gamma * nextvalues * nextnonterminal - mb_values[t]
             mb_advs[t] = lastgaelam = delta + self.gamma * self.lam * nextnonterminal * lastgaelam
-            mb_returns = mb_advs + mb_values
             
             int_delta = mb_int_rewards[t] + self.int_gamma * next_intvalues * nextnonterminal - mb_int_values[t]
             mb_int_advs[t] = int_lastgaelam = int_delta + self.int_gamma * self.lam * nextnonterminal * int_lastgaelam
-            mb_int_returns = mb_int_advs + mb_int_values
-        return (*map(sf01, (mb_obs, mb_returns, mb_int_returns, mb_dones, mb_actions, mb_values, mb_int_values,  mb_neglogpacs)),
+        
+        mb_returns = mb_advs + mb_values
+        mb_int_returns = mb_int_advs + mb_int_values
+        return (*map(sf01, (mb_obs, mb_returns, mb_int_rewards, mb_int_returns, mb_dones, mb_actions, mb_values, mb_int_values,  mb_neglogpacs)),
             epinfos)
-# obs, returns, masks, actions, values, neglogpacs, states = runner.run()
+    
+    
 def sf01(arr):
     """
     swap and then flatten axes 0 and 1
