@@ -40,7 +40,7 @@
 
     ![breakout_only_intrinsic](./5_Exploration_Techinques/breakout_only_intrinsic.png)
 
-- [x] 6. Uncertainty in RL (Update : 21. 3. 2019)
+- [x] 6. Uncertainty in RL (Update : 24. 3. 2019)
      1. [Categorical DQN(C51)](https://flyyufelix.github.io/2017/10/24/distributional-bellman.html)
      2. [QR-DQN](https://arxiv.org/pdf/1710.10044)
      3. [Implicit Quantile Networks](https://arxiv.org/pdf/1806.06923)
