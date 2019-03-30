@@ -47,6 +47,7 @@
 
      ![breakout_iqn](./6_Uncertainty_in_RL/iqn_breakout_result.gif)
 
-- [ ] 7. Imitation Learning
+- [x] 7. Imitation Learning
+     1. [GAIL](https://arxiv.org/abs/1606.03476)
 
 - [ ] 8. Multi-Agent RL
