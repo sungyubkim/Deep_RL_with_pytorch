@@ -52,3 +52,4 @@
 
 - [x] 8. Multi-Agent RL (Update : 4. 4. 2019)
      1. [Upper Confidence Bounds for Tree(UCT)](http://mcts.ai/pubs/mcts-survey-master.pdf)
+     2. [Counterfactual](https://arxiv.org/pdf/1710.11424.pdf) [Hedge](https://arxiv.org/pdf/1411.5007.pdf)
