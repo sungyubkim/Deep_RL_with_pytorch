@@ -124,7 +124,7 @@ class ProcessFrame84(gym.ObservationWrapper):
         super(ProcessFrame84, self).__init__(env)
         self.observation_space = spaces.Box(low=0, high=255, shape=(84, 84, 1))
 
-    def _observation(self, obs):
+    def observation(self, obs):
         return ProcessFrame84.process(obs)
 
     @staticmethod
@@ -150,12 +150,12 @@ class ImageToPyTorch(gym.ObservationWrapper):
         old_shape = self.observation_space.shape
         self.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=(old_shape[-1], old_shape[0], old_shape[1]))
 
-    def _observation(self, observation):
+    def observation(self, observation):
         return np.swapaxes(observation, 2, 0)
 
 
 class ClippedRewardsWrapper(gym.RewardWrapper):
-    def _reward(self, reward):
+    def reward(self, reward):
         """Change all the positive rewards to 1, negative to -1 and keep zero."""
         return np.sign(reward)
 
@@ -190,13 +190,13 @@ class FrameStack(gym.Wrapper):
         shp = env.observation_space.shape
         self.observation_space = spaces.Box(low=0, high=255, shape=(shp[0]*k, shp[1], shp[2]))
 
-    def _reset(self):
+    def reset(self):
         ob = self.env.reset()
         for _ in range(self.k):
             self.frames.append(ob)
         return self._get_ob()
 
-    def _step(self, action):
+    def step(self, action):
         ob, reward, done, info = self.env.step(action)
         self.frames.append(ob)
         return self._get_ob(), reward, done, info
